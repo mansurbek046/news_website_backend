@@ -1,18 +1,9 @@
 from rest_framework import serializers
-from .models import Article, File
+from .models import Article
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
 
-
-class FileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = File
-        fields = '__all__'
-
-
 class ArticleSerializer(serializers.ModelSerializer):
-    uploaded_file = FileSerializer(read_only=True)
-    
     class Meta:
         model=Article
         fields='__all__'

@@ -38,11 +38,6 @@ class ArticleViewSet(ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
-        file = self.request.FILES.get('file')
-        if file:
-                serializer.save(uploaded_file=File.objects.create(file_name=file.name, file_content=file.read(), mime_type=file.content_type))
-        else:
-            serializer.save()
 
 class RegisterViewSet(ModelViewSet):
     queryset=User.objects.all()
